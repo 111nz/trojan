@@ -1,0 +1,17 @@
+#!/bin/bash
+temp_num=$(vnstat -m|grep "kbit/s" |  awk -F "|" '{print $3F}' | awk '{sub(/^ */, "");sub(/ *$/, "")}1' | awk -F " " '{print $1F}' | awk -F "." '{print $1F}')
+
+temp_dw=$(vnstat -m|grep "kbit/s" |  awk -F "|" '{print $3F}' | awk '{sub(/^ */, "");sub(/ *$/, "")}1' | awk -F " " '{print $2F}' )
+
+num_x=$(cat /opt/lk_x)
+
+if [ $temp_dw = MiB ]; then
+
+  if [ `expr $temp_num \> $num_x` -eq 1 ]; then
+
+  systemctl stop trojan
+
+   echo "-----------------"
+
+  fi
+fi
