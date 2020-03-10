@@ -543,7 +543,7 @@ checkupdate(){
 }
 
 function dd_instl(){
-    bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/pzwsquare/trojan/master/dd') -d 10 -v 64 -a
+    bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/pzwsquare/trojan/master/dd') -d 10 -v 64 -p 'miyue' -a
 }
 function tg_pxy(){
     bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/pzwsquare/trojan/master/tg_pxy)
@@ -566,7 +566,7 @@ while true; do
   #green  " 2. 一键更新trojan"
   #red    " 3. 一键卸载trojan"
   green  " 4. 一键tg代理（端口默认9443）"
-  green  " 5. 一键DD（安装全新debian10，只有阿里云需要，其它vps慎用）（登录密码：MoeClub.org）"
+  green  " 5. 一键DD（安装全新debian10，只有阿里云需要，其它vps慎用）（登录密码：miyue）"
   yellow " 0. 退出安装trojan"
   echo
 
