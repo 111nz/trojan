@@ -235,12 +235,11 @@ cat << EOF > /etc/v2ray/config.json
      },
      "localhost"
    ]
- }
   },
   "routing": {
-    "domainStrategy": "AsIs",
+    "domainStrategy": "UseIP",
     "rules": [
-      {"type":"field","inboundTag":"transparent","outboundTag":"dns-out","network":"udp"},   
+      {"type":"field","inboundTag":"transparent","outboundTag":"dns-out","network":"udp"},
       {"type":"field","outboundTag":"direct","ip":"127.0.0.1"},
       {"type":"field","ip":"127.0.0.1","outboundTag": "proxy"},
        //切换全局 
