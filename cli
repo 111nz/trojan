@@ -484,7 +484,7 @@ start_m(){
 	green " Youtube：米月"
 	green " 电报群：https://t.me/mi_yue"
 	green " Youtube频道地址：https://www.youtube.com/channel/UCr4HCEgaZ0cN5_7tLHS_xAg"
-  green " version：20200310v1"
+  green " version：20200311v1"
 	green " ========================================================================="
     echo
     green  "1. 一键安装TroProxy"
