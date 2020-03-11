@@ -73,7 +73,8 @@ wget -O ~/smartdns.deb $sd
 dpkg -i ~/smartdns.deb
 
 cat << EOF > /etc/smartdns/smartdns.conf
-bind :5599
+bind :5598 -group g1
+bind :5599 -group g2
 cache-size 204800
 prefetch-domain yes
 rr-ttl 86400
@@ -84,15 +85,14 @@ log-level info
 log-file /var/log/smartdns.log
 log-size 128k
 log-num 2
-server 223.5.5.5
-server 114.114.114.114
+server 223.5.5.5 -group g1
+server 114.114.114.114 -group g1
 # default port is 853
-server-tls 8.8.8.8
-server-tls 8.8.4.4
-server-tls 1.0.0.1
+server-tls 8.8.4.4 -group g2
+server-tls 1.1.1.1 -group g2
 # default port is 443
-server-https https://dns.google/dns-query
-server-https https://cloudflare-dns.com/dns-query
+server-https https://dns.google/dns-query -group g2
+server-https https://cloudflare-dns.com/dns-query -group g2
 EOF
 
 echo "" > /run/smartdns.pid
@@ -220,7 +220,7 @@ cat << EOF > /etc/v2ray/config.json
       "127.0.0.1",
       {
         "address": "127.0.0.1",
-        "port": 53,
+        "port": 5598,
         "domains": ["geosite:cn"]
       }
     ]
@@ -229,8 +229,11 @@ cat << EOF > /etc/v2ray/config.json
     "domainStrategy": "UseIP",
     "rules": [
       {"type":"field","inboundTag":"transparent","outboundTag":"dns-out","network":"udp"},   
-      {"type":"field","outboundTag":"direct","ip":"127.0.0.1"},
-      {"type":"field","ip":"127.0.0.1","outboundTag": "proxy"}
+      {"type":"field","outboundTag":"direct","ip":"127.0.0.1","port":"5598"},
+      {"type":"field","ip":"127.0.0.1","outboundTag": "proxy"},
+      //切换全局
+      {"type":"field","ip":["geoip:private","geoip:cn"],"outboundTag":"direct"},
+      {"type":"field","domain":["geosite:cn"],"outboundTag":"direct"}
     ]
   }
 }
