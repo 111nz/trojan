@@ -73,8 +73,8 @@ wget -O ~/smartdns.deb $sd
 dpkg -i ~/smartdns.deb
 
 cat << EOF > /etc/smartdns/smartdns.conf
-bind :5598 -group g1
-bind :5599 -group g2
+bind :5598 -group g1 -no-speed-check
+bind :5599 -group g2 -no-speed-check
 cache-size 204800
 prefetch-domain yes
 rr-ttl 86400
