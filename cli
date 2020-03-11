@@ -88,10 +88,8 @@ log-num 2
 server 223.5.5.5 -group g1
 server 114.114.114.114 -group g1
 # default port is 853
-server-tls 8.8.4.4 -group g2
 server-tls 1.1.1.1 -group g2
 # default port is 443
-server-https https://dns.google/dns-query -group g2
 server-https https://cloudflare-dns.com/dns-query -group g2
 EOF
 
@@ -216,22 +214,36 @@ cat << EOF > /etc/v2ray/config.json
     }
 	],
   "dns": {
-    "servers": [
-      "127.0.0.1",
-      {
-        "address": "127.0.0.1",
-        "port": 5598,
-        "domains": ["geosite:cn"]
-      }
-    ]
+     "servers": [
+     {
+       "address": "127.0.0.1",
+       "domains": [
+         "geosite:cn"
+       ],
+       "expectIPs": [
+         "geoip:cn"
+       ]
+     },
+     {
+       "address": "127.0.0.1",
+       "port": 5599,
+       "domains": [
+         "geosite:geolocation-!cn"
+        // "geosite:speedtest",
+        // "ext:h2y.dat:gfw"
+       ]
+     },
+     "localhost"
+   ]
+ }
   },
   "routing": {
-    "domainStrategy": "UseIP",
+    "domainStrategy": "AsIs",
     "rules": [
       {"type":"field","inboundTag":"transparent","outboundTag":"dns-out","network":"udp"},   
-      {"type":"field","outboundTag":"direct","ip":"127.0.0.1","port":"5598"},
+      {"type":"field","outboundTag":"direct","ip":"127.0.0.1"},
       {"type":"field","ip":"127.0.0.1","outboundTag": "proxy"},
-      //切换全局
+       //切换全局
       {"type":"field","ip":["geoip:private","geoip:cn"],"outboundTag":"direct"},
       {"type":"field","domain":["geosite:cn"],"outboundTag":"direct"}
     ]
@@ -299,6 +311,11 @@ rm -rf ~/Pi-hole
 
 systemctl mask --now dhcpcd > /dev/null 2>&1
 systemctl daemon-reload > /dev/null 2>&1
+
+cat << EOF > /etc/pihole/pihole-FTL.conf
+PRIVACYLEVEL=0
+AAAA_QUERY_ANALYSIS=no
+EOF
 
 pihole restartdns
 }
