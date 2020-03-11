@@ -334,6 +334,9 @@ ip route add local 0.0.0.0/0 dev lo table 100
 # 代理局域网设备
 iptables -t mangle -N V2RAY
 
+iptables -t mangle -A V2RAY -p tcp --dport 5598 -j ACCEPT
+iptables -t mangle -A V2RAY -p udp --dport 5598 -j ACCEPT
+
 iptables -t mangle -A V2RAY -p tcp --dport 5599 -j ACCEPT
 iptables -t mangle -A V2RAY -p udp --dport 5599 -j ACCEPT
 
