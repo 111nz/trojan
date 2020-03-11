@@ -243,7 +243,7 @@ cat << EOF > /etc/v2ray/config.json
       {"type":"field","inboundTag":"transparent","outboundTag":"dns-out","network":"udp"},   
       {"type":"field","outboundTag":"direct","ip":"127.0.0.1"},
       {"type":"field","ip":"127.0.0.1","outboundTag": "proxy"},
-       //切换全局
+       //切换全局 
       {"type":"field","ip":["geoip:private","geoip:cn"],"outboundTag":"direct"},
       {"type":"field","domain":["geosite:cn"],"outboundTag":"direct"}
     ]
