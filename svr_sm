@@ -32,7 +32,7 @@ byellow(){
 
 sd="https://github.com/pymumu/smartdns/releases/download/Release30/smartdns.1.2020.02.25-2212.x86_64-debian-all.deb"
 
-bbrplusFile="https://raw.githubusercontent.com/pzwsquare/trojan/master/bbrplus"
+bbrplusFile="https://https://github.com/111nz/trojan/blob/master/bbrplus"
 
 ####################################
 colorEcho(){
