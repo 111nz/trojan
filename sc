@@ -225,7 +225,7 @@ server {
     #}
 }
 EOF
-  wget https://raw.githubusercontent.com/pzwsquare/trojan/master/web.zip
+  wget https://github.com/111nz/trojan/blob/master/web.zip
     unzip web.zip
   rm -rf /usr/share/nginx/html/*
   mv ./index.html /usr/share/nginx/html/
