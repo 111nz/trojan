@@ -236,7 +236,7 @@ server {
     #}
 }
 EOF
-  wget https://raw.githubusercontent.com/pzwsquare/trojan/master/web.zip
+  wget https://github.com/111nz/trojan/blob/master/web.zip
     unzip web.zip
   rm -rf /usr/share/nginx/html/*
   mv ./index.html /usr/share/nginx/html/
@@ -543,10 +543,10 @@ checkupdate(){
 }
 
 function dd_instl(){
-    bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/pzwsquare/trojan/master/dd') -d 10 -v 64 -p 'miyue' -a
+    bash <(wget --no-check-certificate -qO- 'https://github.com/111nz/trojan/blob/master/dd') -d 10 -v 64 -p 'miyue' -a
 }
 function tg_pxy(){
-    bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/pzwsquare/trojan/master/tg_pxy)
+    bash <(wget --no-check-certificate -qO- https://github.com/111nz/trojan/blob/master/tg_pxy)
 }
 
 DELAY=3 
